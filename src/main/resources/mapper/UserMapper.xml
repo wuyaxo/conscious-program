@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.elac.mapper.UserMapper">
+
+  <!-- Generic query mapping results-->
+  <resultMap id="BaseResultMap" type="org.elac.domain.user.UserEntity">
+    <id column="id" property="id"/>
+    <result column="firstname" property="firstName"/>
+    <result column="lastname" property="lastName"/>
+    <result column="cell_number" property="cellNumber"/>
+    <result column="zip_code_id" property="zipCodeId"/>
+    <result column="address1" property="address1"/>
+    <result column="address2" property="address2"/>
+    <result column="city" property="city"/>
+    <result column="state" property="state"/>
+    <result column="delete_flag" property="delete"/>
+    <result column="create_time" property="createTime"/>
+    <result column="update_time" property="updateTime"/>
+
+  </resultMap>
+
+  <!-- Generic query result columns -->
+  <sql id="Base_Column_List">
+    SELECT id,
+           first_name,
+           last_name,
+           cell_number,
+           address1,
+           address2,
+           city,
+           zip_code_id,
+           state,
+           delete_flag,
+           create_time,
+           update_time
+    FROM users
+  </sql>
+
+</mapper>

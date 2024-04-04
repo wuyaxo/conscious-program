@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--Log levels and priorities: OFF > FATAL > ERROR > WARN > INFO > DEBUG > TRACE > ALL -->
+
+<configuration status="WARN" monitorInterval="30">
+
+  <Properties>
+    <Property name="ServiceName">conscious-program</Property>
+    <Property name="Server">test</Property>
+    <Property name="log.path">${sys:user.home}/conscious-program/logs</Property>
+    <Property name="log.filePattern">${log.path}/$${date:yyyy-MM-dd}/</Property>
+    <Property name="log.pattern">%d{yyyy-MM-dd HH:mm:ss} [%t] [%level] %c:%L - %m%n</Property>
+  </Properties>
+  <appenders>
+    <console name="Console" target="SYSTEM_OUT">
+      <PatternLayout pattern="${log.pattern}"/>
+    </console>
+
+    <File name="log" fileName="logs/test.log" append="false">
+      <PatternLayout pattern="${log.pattern}"/>
+    </File>
+
+    <RollingFile name="RollingFileInfo" fileName="${log.path}/info.log"
+      filePattern="${log.filePattern}/info-%d{yyyy-MM-dd}-%i.log.gz">
+      <ThresholdFilter level="debug" onMatch="ACCEPT" onMismatch="DENY"/>
+      <PatternLayout pattern="${log.pattern}"/>
+      <Policies>
+        <TimeBasedTriggeringPolicy modulate="true" interval="1"/>
+        <SizeBasedTriggeringPolicy size="128 MB"/>
+      </Policies>
+      <DefaultRolloverStrategy max="180"/>
+    </RollingFile>
+
+    <RollingFile name="RollingFileWarn" fileName="${log.path}/warn.log"
+      filePattern="${log.filePattern}/warn-%d{yyyy-MM-dd}-%i.log.gz">
+      <ThresholdFilter level="warn" onMatch="ACCEPT"
+        onMismatch="DENY"/>
+      <PatternLayout pattern="${log.pattern}"/>
+      <Policies>
+        <TimeBasedTriggeringPolicy modulate="true" interval="1"/>
+        <SizeBasedTriggeringPolicy size="128 MB"/>
+      </Policies>
+      <DefaultRolloverStrategy max="180"/>
+    </RollingFile>
+
+    <RollingFile name="RollingFileError" fileName="${log.path}/error.log"
+      filePattern="${log.filePattern}/error-%d{yyyy-MM-dd}-%i.log.gz">
+      <PatternLayout pattern="${log.pattern}"/>
+      <Policies>
+        <TimeBasedTriggeringPolicy modulate="true" interval="1"/>
+        <SizeBasedTriggeringPolicy size="128 MB"/>
+      </Policies>
+      <DefaultRolloverStrategy max="180"/>
+    </RollingFile>
+
+  </appenders>
+
+  <loggers>
+    <logger name="org.elac" level="INFO"/>
+    <logger name="com.baomidou" level="INFO"/>
+    <logger name="org.mybatis" level="INFO"/>
+    <root level="INFO">
+      <appender-ref ref="Console"/>
+    </root>
+  </loggers>
+</configuration>
