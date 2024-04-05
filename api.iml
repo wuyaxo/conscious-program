@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module version="4">
+  <component name="AdditionalModuleElements">
+    <content url="file://$MODULE_DIR$/api" dumb="true">
+      <sourceFolder url="file://$MODULE_DIR$/api/src/main/test" isTestSource="true" />
+    </content>
+  </component>
+  <component name="SonarLintModuleSettings">
+    <option name="uniqueId" value="968b94b2-5e75-4dcd-8d67-fff3eb5bef3e" />
+  </component>
+</module>

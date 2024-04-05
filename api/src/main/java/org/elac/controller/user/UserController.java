@@ -3,14 +3,10 @@ package org.elac.controller.user;
 import javax.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
 import org.elac.common.Result;
-import org.elac.domain.user.UserEntity;
-import org.elac.service.UserService;
-import org.springframework.validation.annotation.Validated;
+import org.elac.entity.UserEntity;
+import org.elac.service.IUserService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -28,7 +24,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class UserController {
 
     @Resource
-    private UserService userService;
+    private IUserService userService;
 
     @GetMapping("/get-user/v1/{id}")
     public Result<UserEntity> display(@PathVariable("id") Integer id) {

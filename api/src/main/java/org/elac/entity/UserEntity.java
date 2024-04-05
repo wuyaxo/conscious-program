@@ -1,4 +1,4 @@
-package org.elac.domain.user;
+package org.elac.entity;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
@@ -17,7 +17,7 @@ import lombok.Data;
  */
 
 @Data
-@TableName("users")
+@TableName("T_USERS")
 public class UserEntity implements Serializable {
 
     @TableId(value = "id", type = IdType.AUTO)
@@ -34,8 +34,8 @@ public class UserEntity implements Serializable {
     private String address2;
     @TableField("city")
     private String city;
-    @TableField("zip_code_id")
-    private Integer zipCodeId;
+    @TableField("zip_code")
+    private Integer zipCode;
     @TableField("state")
     private Integer state;
     @TableField("delete_flag")

@@ -2,9 +2,9 @@ package org.elac.service.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import lombok.RequiredArgsConstructor;
-import org.elac.domain.user.UserEntity;
+import org.elac.entity.UserEntity;
 import org.elac.mapper.UserMapper;
-import org.elac.service.UserService;
+import org.elac.service.IUserService;
 import org.springframework.stereotype.Service;
 
 /**
@@ -16,7 +16,7 @@ import org.springframework.stereotype.Service;
  */
 @Service
 @RequiredArgsConstructor
-public class UserServiceImpl extends ServiceImpl<UserMapper, UserEntity> implements UserService {
+public class UserServiceImpl extends ServiceImpl<UserMapper, UserEntity> implements IUserService {
 
     @Override
     public UserEntity getUser(Integer id) {

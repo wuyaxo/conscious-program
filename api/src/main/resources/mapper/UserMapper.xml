@@ -4,12 +4,12 @@
 <mapper namespace="org.elac.mapper.UserMapper">
 
   <!-- Generic query mapping results-->
-  <resultMap id="BaseResultMap" type="org.elac.domain.user.UserEntity">
+  <resultMap id="BaseResultMap" type="org.elac.entity.UserEntity">
     <id column="id" property="id"/>
     <result column="firstname" property="firstName"/>
     <result column="lastname" property="lastName"/>
     <result column="cell_number" property="cellNumber"/>
-    <result column="zip_code_id" property="zipCodeId"/>
+    <result column="zip_code" property="zipCode"/>
     <result column="address1" property="address1"/>
     <result column="address2" property="address2"/>
     <result column="city" property="city"/>
@@ -29,12 +29,12 @@
            address1,
            address2,
            city,
-           zip_code_id,
+           zip_code,
            state,
            delete_flag,
            create_time,
            update_time
-    FROM users
+    FROM t_users
   </sql>
 
 </mapper>
