@@ -12,8 +12,8 @@
   <modules>
     <module>api</module>
     <module>mybatis-generator</module>
+    <module>swing</module>
   </modules>
-
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
@@ -27,6 +27,11 @@
     <jackson.version>2.13.4</jackson.version>
     <disruptor.version>3.4.4</disruptor.version>
   </properties>
+  <parent>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-parent</artifactId>
+    <version>2.7.18</version>
+  </parent>
   <dependencies>
     <dependency>
       <groupId>com.baomidou</groupId>
