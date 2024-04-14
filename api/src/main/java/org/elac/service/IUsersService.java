@@ -5,14 +5,14 @@ import com.baomidou.mybatisplus.extension.service.IService;
 
 /**
  * <p>
- *  Service
+ * 服务类
  * </p>
  *
  * @author David
- * @since 2024-04-07 22:56:23
+ * @since 2024-04-13 21:24:04
  */
 public interface IUsersService extends IService<UsersEntity> {
 
-    UsersEntity getUsersByUserId(Integer userId);
+    int insertUser(UsersEntity user);
 
 }

@@ -2,6 +2,7 @@ package org.elac.entity;
 
 import com.baomidou.mybatisplus.annotation.FieldFill;
 import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableLogic;
 import com.baomidou.mybatisplus.annotation.TableName;
 import java.io.Serializable;
@@ -11,11 +12,11 @@ import lombok.Setter;
 
 /**
  * <p>
- * 
+ *
  * </p>
  *
  * @author David
- * @since 2024-04-07 22:56:23
+ * @since 2024-04-13 21:24:04
  */
 @Getter
 @Setter
@@ -24,11 +25,8 @@ public class UsersEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    @TableField("ID")
+    @TableId("ID")
     private Integer id;
-
-    @TableField("USER_ID")
-    private Integer userId;
 
     @TableField("FIRST_NAME")
     private String firstName;
@@ -38,6 +36,9 @@ public class UsersEntity implements Serializable {
 
     @TableField("CELL_NUMBER")
     private String cellNumber;
+
+    @TableField("EMAIL")
+    private String email;
 
     @TableField("ADDRESS1")
     private String address1;
@@ -50,6 +51,15 @@ public class UsersEntity implements Serializable {
 
     @TableField("ZIP_CODE")
     private Integer zipCode;
+
+    @TableField("USER_NAME")
+    private String userName;
+
+    @TableField("PASSWORD")
+    private String password;
+
+    @TableField("SALT")
+    private String salt;
 
     @TableField("STATE")
     private Short state;

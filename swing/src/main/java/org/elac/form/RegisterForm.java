@@ -1,13 +1,26 @@
 package org.elac.form;
 
 import java.awt.Color;
-import java.text.NumberFormat;
-import java.text.ParseException;
-import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.NumberFormat;
+import java.text.ParseException;
+import javax.annotation.Resource;
+import javax.swing.JButton;
+import javax.swing.JFormattedTextField;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
 import javax.swing.text.MaskFormatter;
+import lombok.extern.slf4j.Slf4j;
+import org.elac.entity.UsersEntity;
+import org.elac.service.impl.UsersBusServiceImpl;
+import org.springframework.stereotype.Component;
 
+@Slf4j
+@Component
 public class RegisterForm extends JFrame {
 
     private JPanel logInPanel;
@@ -29,9 +42,10 @@ public class RegisterForm extends JFrame {
     private JTextField textUsername;
     private JLabel email;
     private JFormattedTextField textEmail;
+    @Resource
+    private UsersBusServiceImpl usersBusService;
 
     public RegisterForm() {
-
         setContentPane(logInPanel);
         setTitle("Java Log-In Project");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -53,7 +67,20 @@ public class RegisterForm extends JFrame {
                     textEmail.setBackground(Color.RED);
                     JOptionPane.showMessageDialog(RegisterForm.this, "Invalid email address", "Error", JOptionPane.ERROR_MESSAGE);
                 }
-                JOptionPane.showMessageDialog(RegisterForm.this, "Thank you for your submission!");
+                UsersEntity user = new UsersEntity();
+                user.setFirstName(firstname);
+                user.setLastName(lastname);
+                user.setCity(city);
+                user.setAddress1(address);
+                user.setCellNumber(phone);
+                user.setZipCode(Integer.parseInt(zipcode));
+                user.setEmail(email);
+                user.setUserName(username);
+                // save user
+                user = usersBusService.saveUser(user);
+                JOptionPane.showMessageDialog(RegisterForm.this,
+                        "You have successfully registered, password is " + user.getPassword(), "Success",
+                        JOptionPane.INFORMATION_MESSAGE);
             }
         });
         setLocationRelativeTo(null);
@@ -67,7 +94,7 @@ public class RegisterForm extends JFrame {
             formatter.setAllowsInvalid(false);
             formatter.setCommitsOnValidEdit(true);
         } catch (ParseException e) {
-            e.printStackTrace();
+            log.error(e.getMessage());
         }
         return formatter;
     }

@@ -1,7 +1,7 @@
 package org.elac.mapper;
 
-import org.elac.entity.UsersEntity;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import org.elac.entity.UsersEntity;
 
 /**
  * <p>
@@ -13,4 +13,5 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  */
 public interface UsersMapper extends BaseMapper<UsersEntity> {
 
+    int insertUser(UsersEntity entity);
 }

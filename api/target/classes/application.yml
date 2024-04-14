@@ -1,0 +1,37 @@
+spring:
+  application:
+    name: conscious-program
+  datasource:
+    url: jdbc:h2:/Users/mac/Documents/Dev/workspace/conscious-program/api/src/main/resources/elac;MODE=LEGACY
+    username: sa
+    password: P@ssw0rd
+    driverClassName: org.h2.Driver
+
+server:
+  servlet:
+    context-path: /
+  port: 8000
+
+logging:
+  config: classpath:log/log4j2-test.xml
+
+
+
+mybatis-plus:
+  mapper-locations: classpath*:mapper/**/*.xml
+  typeAliasesPackage: org.elac.*.entity
+  global-config:
+    id-type: 2
+    field-strategy: 2
+    db-column-underline: true
+    refresh-mapper: true
+    #capital-mode: true
+    db-config:
+      logic-delete-value: 1
+      logic-not-delete-value: 0
+    #meta-object-handler: com.baomidou.springboot.xxx
+    #sql-injector: com.baomidou.mybatisplus.mapper.LogicSqlInjector
+  configuration:
+    map-underscore-to-camel-case: true
+    cache-enabled: false
+    call-setters-on-nulls: true
