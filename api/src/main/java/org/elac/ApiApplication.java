@@ -19,7 +19,5 @@ public class ApiApplication {
     public static void main(String[] args) {
         SpringApplication application = new SpringApplication(ApiApplication.class);
         application.run(args);
-
     }
-
 }

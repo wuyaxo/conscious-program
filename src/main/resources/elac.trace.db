@@ -1,0 +1,9 @@
+2024-04-05 11:29:38.635745-07:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "USERS" not found (this database is empty); SQL statement:
+SELECT id,first_name,last_name,cell_number,address1,address2,city,zip_code,state,delete_flag AS delete,create_time,update_time FROM users WHERE id=? [42104-224]
+2024-04-05 11:30:32.444457-07:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "T_USERS" not found (this database is empty); SQL statement:
+SELECT id,first_name,last_name,cell_number,address1,address2,city,zip_code,state,delete_flag AS delete,create_time,update_time FROM T_USERS WHERE id=? [42104-224]
+2024-04-05 11:30:38.621434-07:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "T_USERS" not found (this database is empty); SQL statement:
+SELECT id,first_name,last_name,cell_number,address1,address2,city,zip_code,state,delete_flag AS delete,create_time,update_time FROM T_USERS WHERE id=? [42104-224]

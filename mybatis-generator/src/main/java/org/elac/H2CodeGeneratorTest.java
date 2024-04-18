@@ -39,7 +39,7 @@ public class H2CodeGeneratorTest {
 
     public static void main(String[] args) {
         //Multiple tables use comma to separate
-        final String tables = "T_LOGGING_LOG";
+        final String tables = "T_USERS";
         final String author = "David";
         final String parentModuleName = "";
         final String moduleName = "api";

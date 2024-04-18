@@ -2,6 +2,7 @@ package org.elac.entity;
 
 import com.baomidou.mybatisplus.annotation.FieldFill;
 import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import java.io.Serializable;
 import java.time.LocalDateTime;
@@ -23,7 +24,7 @@ public class LoggingLogEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    @TableField("ID")
+    @TableId
     private Integer id;
 
     @TableField("USER_ID")
