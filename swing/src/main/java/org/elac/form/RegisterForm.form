@@ -28,7 +28,7 @@
           <horizontalAlignment value="2"/>
           <horizontalTextPosition value="11"/>
           <icon value="img/elac-logo.png"/>
-          <text value="Java Log-In Form"/>
+          <text value="Registration"/>
         </properties>
       </component>
       <component id="8fc65" class="javax.swing.JTextField" binding="textFirstName">

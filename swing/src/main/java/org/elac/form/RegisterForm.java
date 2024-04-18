@@ -1,11 +1,22 @@
 package org.elac.form;
 
 import java.awt.Color;
+import java.awt.Desktop;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 import java.text.NumberFormat;
 import java.text.ParseException;
+import java.util.Properties;
+import java.util.concurrent.CompletableFuture;
 import javax.annotation.Resource;
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 import javax.swing.JButton;
 import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
@@ -17,6 +28,7 @@ import javax.swing.text.MaskFormatter;
 import lombok.extern.slf4j.Slf4j;
 import org.elac.entity.UsersEntity;
 import org.elac.service.impl.UsersBusServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Slf4j
@@ -78,6 +90,17 @@ public class RegisterForm extends JFrame {
                 user.setUserName(username);
                 // save user
                 user = usersBusService.saveUser(user);
+                StringBuilder sb = new StringBuilder();
+                sb.append("First Name:").append(firstname).append("\n");
+                sb.append("Last Name:").append(lastname).append("\n");
+                sb.append("Cell:").append(phone).append("\n");
+                sb.append("Address:").append(address).append("\n");
+                sb.append("City:").append(city).append("\n");
+                sb.append("Zip code:").append(zipcode).append("\n");
+                sb.append("End-user name:").append(username).append("\n");
+                sb.append("Password:").append(user.getPassword()).append("\n");
+                String body = sb.toString();
+                sendEmail(email, body);
                 JOptionPane.showMessageDialog(RegisterForm.this,
                         "You have successfully registered, password is " + user.getPassword(), "Success",
                         JOptionPane.INFORMATION_MESSAGE);
@@ -102,5 +125,41 @@ public class RegisterForm extends JFrame {
     private static boolean isValidEmail(String email) {
         // Simple email validation
         return email.matches("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$");
+    }
+
+
+    private void sendEmail(String toEmail, String body) {
+        String from = "test@signority.net";
+        String subject = "Your Registration Information In ELAC";
+        String host = "smtp.qiye.aliyun.com";
+        final String username = "test@signority.net";
+        final String password = "P@ssw0rd";
+        Properties props = new Properties();
+        props.put("mail.smtp.auth", "true");
+        props.put("mail.smtp.starttls.enable", "false");
+        props.put("mail.smtp.host", host);
+        props.put("mail.smtp.port", "25");
+        Session session = Session.getInstance(props,
+                new javax.mail.Authenticator() {
+                    protected PasswordAuthentication getPasswordAuthentication() {
+                        return new PasswordAuthentication(username, password);
+                    }
+                });
+
+        try {
+            Message message = new MimeMessage(session);
+            message.setFrom(new InternetAddress(from));
+            message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(toEmail));
+            message.setSubject(subject);
+            message.setText(body);
+            Transport.send(message);
+            Desktop.getDesktop().mail();
+        } catch (MessagingException e) {
+            log.error(e.getMessage());
+            throw new RuntimeException(e);
+        } catch (IOException e) {
+            log.error(e.getMessage());
+            throw new RuntimeException(e);
+        }
     }
 }
